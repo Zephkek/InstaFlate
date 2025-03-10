@@ -1,66 +1,63 @@
-
 # Instagram Denial-of-Service via Malformed Drawable Resource
 
-## **Summary**
-A memory exhaustion vulnerability exists in Instagram for Android (versions ≤ 370.1.0.43.96) due to improper handling of malformed drawable resources in group chats. Processing a specially crafted drawable triggers infinite allocation loops, cascading exceptions, and heap exhaustion, leading to forced application termination (DoS) for all users who view the malicious message.
+## Summary
+A memory exhaustion vulnerability exists in Instagram for Android (versions ≤ 370.1.0.43.96) due to improper handling of malformed drawable resources in end-to-end encrypted (E2EE) group chats. Specifically, attempting to 'like' a message referencing a non-existent or corrupted drawable triggers infinite retry allocations, causing OutOfMemoryError (OOM) and app termination.
 
-## **Technical Details**
-### **Affected Versions**
-- Instagram for Android ≤ 370.1.0.43.96
+## Technical Details
 
-### **Vulnerability Type**
-- Denial-of-Service (DoS) via Resource-Induced Heap Exhaustion
+### Vulnerability Type:
+Denial-of-Service (DoS) via Heap Exhaustion triggered by malformed drawable resource handling.
 
-### **Root Cause**
-The app fails to validate drawable resources before inflation. When a malformed or missing drawable (referenced by static IDs like `0x7f0802d7`, `0x7f020004`) is processed, background threads (e.g., `IgExecutorV2`, `SWPool3_t1of1`) enter an infinite retry loop, attempting to allocate trivial amounts of memory (16–32 bytes) while generating unhandled `ResourceNotFoundException` and `NullPointerException` errors.
+### Root Cause:
+Instagram's Android app fails to handle corrupted drawable resources safely, leading to repeated unsuccessful allocations that exhaust heap memory.
 
-### **Crash Chain Analysis**
-1. **Memory Exhaustion**  
-   - Failed allocations due to rapid garbage collection (GC) cycles:  
-     ```
-     FATAL EXCEPTION: IgExecutorV2 #321  
-     OutOfMemoryError: Failed to allocate 16 bytes (free: 269152 bytes, heap target: 536MB)  
-     ```  
-   - Subsequent failures in other threads (e.g., `SWPool3_t1of1` for 32-byte allocations).  
+### Crash Chain Analysis:
+- Malformed drawable resource referenced (e.g., ID: `0x7f0802d7`)
+- Android attempts to allocate memory repeatedly
+- Rapid garbage collection cycles unable to free adequate heap space
+- Leads to `java.lang.OutOfMemoryError`
+- App UI thread stalls, causing an ANR (Application Not Responding)
+- Instagram app forcibly terminated by the OS after ~10 seconds.
 
-2. **Exception Cascade**  
-   - `ResourceNotFoundException` for unresolved drawables (e.g., `#0x7f0802d7`).  
-   - `NullPointerException` in critical methods (e.g., `Looper.isPerfLogEnable()`).  
+### Reproduction Steps:
 
-3. **ANR and Termination**  
-   - UI thread blockage (`ANR in ModalActivity`) after >10 seconds of unresponsiveness:  
-     ```
-     ANR in Window{868588b u0 com.instagram.android/com.instagram.modal.ModalActivity}  
-     Waited 10002ms for MotionEvent  
-     ```  
-   - Forced app termination by the OS.
+1. **Create E2EE Group Chat**:
+   - Initiate an end-to-end encrypted group chat on Instagram.
 
-### **Attack Vector**
-An attacker can send a message containing a malformed drawable (e.g., via group chat). All clients that render the message experience catastrophic memory exhaustion and crashes.
+2. **Malicious Message Injection**:
+   - Craft or send a message that references a non-existent drawable resource (e.g., an emoticon/sticker with corrupted or invalid ID).
 
-## **Proof of Concept**
-1. Craft a drawable resource with invalid metadata or reference a non-existent resource ID (e.g., `0x7f0802d7`).  
-2. Send the malicious drawable to a group chat.  
-3. Observe client-side crashes across all devices that load the message.  
+3. **Trigger Exploit**:
+   - A group member attempts to 'like' the malicious message.
 
-*Video Proof*: 
+4. **Observe Effect**:
+   - All group chat clients that render the 'like' experience repeated memory allocations, OOM errors, and app crashes.
 
-https://github.com/user-attachments/assets/9c92a199-9efd-450c-a01b-51c8d3817576
+### PoC Reproduction Conditions:
+- Instagram Android ≤ 370.1.0.43.96
+- Android device
+- E2EE enabled Instagram group chat
 
+### Impact:
+- **Severity**: High (Denial-of-Service)
+- **Scope**: All participants viewing/interacting with the malformed message
+### Video POC of imapct on multiple devices in group:
 
-## **Impact**
-- **Availability**: User who view the message either have their system or app crash
-- **Scope**: All users in a group chat who view the message.  
+# Device 1 (User one in group OK with end to end enc enabled Galaxy A52)
 
-## **Remediation**
-- **Input Validation**: Validate resource integrity before inflation.  
-- **Exception Handling**: Implement graceful failure for `ResourceNotFoundException` (e.g., fallback assets).  
-- **Memory Safeguards**: Terminate threads after repeated allocation failures.  
+https://github.com/user-attachments/assets/93002dd6-77dd-4b7f-b2fd-5ba86372f588
 
-## **References**
-- Affected Version: [Google Play Store v370.1.0.43.96](https://play.google.com/store/apps/details?id=com.instagram.android)  and below
-- Log Excerpts: Internal crash logs (attached).  
+# Device 2 (User 2 in group in group OK with end to end enc enabled Galaxy S22 Ultra)
 
-## **Disclosure Timeline**
-- **Report Date**: 3/8/25
-- **CNA Report Date**: 3/9/25
+https://github.com/user-attachments/assets/8281d960-0493-4849-bcad-3475103719a3
+
+### Mitigation Recommendations:
+- **Robust Resource Validation**: Ensure drawable resources are verified before rendering.
+- **Graceful Exception Handling**: Catch exceptions like `ResourceNotFoundException` and handle gracefully without repeated allocation attempts.
+- **Isolated Execution Environment**: Process drawable inflation in isolated/sandboxed threads with strict memory limits.
+
+### Disclosure Timeline:
+- **Initial Report**: 03/08/2025
+- **CNA Notification**: 03/09/2025
+- **Public Disclosure**: TBD (following responsible disclosure guidelines)
+
