@@ -1,0 +1,195 @@
+
+------ 0.016s was the duration of 'VM TRACES JUST NOW' ------
+------ VM TRACES AT LAST ANR (/data/anr/anr_2025-03-09-17-54-03-414: 2025-03-09 17:54:14) ------
+Subject: Input dispatching timed out (5aa845b com.instagram.android/com.instagram.modal.ModalActivity (server) is not responding. Waited 10001ms for MotionEvent)
+RssHwmKb: 1086180
+RssKb: 948752
+RssAnonKb: 694008
+RssShmemKb: 2040
+VmSwapKb: 21748
+
+
+--- CriticalEventLog ---
+capacity: 20
+events <
+  timestamp_ms: 1741539219392
+  anr <
+    pid: 16545
+    process: "com.instagram.android"
+    process_class: 1
+    subject: "Input dispatching timed out (5aa845b com.instagram.android/com.instagram.modal.ModalActivity (server) is not responding. Waited 10000ms for MotionEvent)"
+    uid: 10297
+  >
+>
+timestamp_ms: 1741539243412
+window_ms: 300000
+
+----- dumping pid: 16545 at 12920552
+libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
+
+----- Waiting Channels: pid 16545 at 2025-03-09 17:54:02.573927186+0100 -----
+Cmd line: com.instagram.android
+
+sysTid=16545     futex_wait_queue_me
+sysTid=16550     do_sigtimedwait
+sysTid=16551     pipe_read.llvm.2045161024515710995
+sysTid=16552     futex_wait_queue_me
+sysTid=16553     futex_wait_queue_me
+sysTid=16554     futex_wait_queue_me
+sysTid=16555     futex_wait_queue_me
+sysTid=16556     futex_wait_queue_me
+sysTid=16558     binder_wait_for_work
+sysTid=16559     binder_wait_for_work
+sysTid=16576     futex_wait_queue_me
+sysTid=16579     futex_wait_queue_me
+sysTid=16581     futex_wait_queue_me
+sysTid=16583     futex_wait_queue_me
+sysTid=16584     do_epoll_wait
+sysTid=16585     do_epoll_wait
+sysTid=16586     futex_wait_queue_me
+sysTid=16589     futex_wait_queue_me
+sysTid=16595     futex_wait_queue_me
+sysTid=16596     futex_wait_queue_me
+sysTid=16597     futex_wait_queue_me
+sysTid=16598     futex_wait_queue_me
+sysTid=16599     futex_wait_queue_me
+sysTid=16600     futex_wait_queue_me
+sysTid=16601     futex_wait_queue_me
+sysTid=16603     futex_wait_queue_me
+sysTid=16604     futex_wait_queue_me
+sysTid=16607     futex_wait_queue_me
+sysTid=16608     do_epoll_wait
+sysTid=16610     do_epoll_wait
+sysTid=16618     do_epoll_wait
+sysTid=16619     do_epoll_wait
+sysTid=16622     futex_wait_queue_me
+sysTid=16623     do_sys_poll
+sysTid=16624     futex_wait_queue_me
+sysTid=16625     do_epoll_wait
+sysTid=16626     futex_wait_queue_me
+sysTid=16628     futex_wait_queue_me
+sysTid=16629     do_epoll_wait
+sysTid=16630     futex_wait_queue_me
+sysTid=16641     futex_wait_queue_me
+sysTid=16642     do_epoll_wait
+sysTid=16650     futex_wait_queue_me
+sysTid=16664     futex_wait_queue_me
+sysTid=16668     futex_wait_queue_me
+sysTid=16669     futex_wait_queue_me
+sysTid=16672     futex_wait_queue_me
+sysTid=16673     futex_wait_queue_me
+sysTid=16674     futex_wait_queue_me
+sysTid=16675     futex_wait_queue_me
+sysTid=16676     futex_wait_queue_me
+sysTid=16678     futex_wait_queue_me
+sysTid=16679     do_epoll_wait
+sysTid=16681     futex_wait_queue_me
+sysTid=16683     futex_wait_queue_me
+sysTid=16684     do_epoll_wait
+sysTid=16720     do_epoll_wait
+sysTid=16721     futex_wait_queue_me
+sysTid=16722     futex_wait_queue_me
+sysTid=16723     futex_wait_queue_me
+sysTid=16725     futex_wait_queue_me
+sysTid=16727     do_epoll_wait
+sysTid=16729     do_epoll_wait
+sysTid=16735     do_epoll_wait
+sysTid=16739     do_epoll_wait
+sysTid=16744     do_epoll_wait
+sysTid=16751     futex_wait_queue_me
+sysTid=16752     futex_wait_queue_me
+sysTid=16753     futex_wait_queue_me
+sysTid=16754     do_epoll_wait
+sysTid=16755     futex_wait_queue_me
+sysTid=16776     futex_wait_queue_me
+sysTid=16777     futex_wait_queue_me
+sysTid=16779     binder_wait_for_work
+sysTid=16780     do_epoll_wait
+sysTid=16789     futex_wait_queue_me
+sysTid=16802     futex_wait_queue_me
+sysTid=16804     futex_wait_queue_me
+sysTid=16806     do_epoll_wait
+sysTid=16810     futex_wait_queue_me
+sysTid=16811     inotify_read
+sysTid=16812     do_epoll_wait
+sysTid=16814     futex_wait_queue_me
+sysTid=16818     futex_wait_queue_me
+sysTid=16819     futex_wait_queue_me
+sysTid=16820     binder_wait_for_work
+sysTid=16828     futex_wait_queue_me
+sysTid=16835     futex_wait_queue_me
+sysTid=16840     futex_wait_queue_me
+sysTid=16856     futex_wait_queue_me
+sysTid=16857     futex_wait_queue_me
+sysTid=16858     futex_wait_queue_me
+sysTid=16859     futex_wait_queue_me
+sysTid=16860     futex_wait_queue_me
+sysTid=16861     futex_wait_queue_me
+sysTid=16862     futex_wait_queue_me
+sysTid=16863     do_epoll_wait
+sysTid=16864     futex_wait_queue_me
+sysTid=16865     futex_wait_queue_me
+sysTid=16875     futex_wait_queue_me
+sysTid=16879     do_epoll_wait
+sysTid=16880     futex_wait_queue_me
+sysTid=16883     do_epoll_wait
+sysTid=16885     futex_wait_queue_me
+sysTid=16888     futex_wait_queue_me
+sysTid=16890     futex_wait_queue_me
+sysTid=16894     futex_wait_queue_me
+sysTid=16901     futex_wait_queue_me
+sysTid=16902     futex_wait_queue_me
+sysTid=16905     do_epoll_wait
+sysTid=16914     futex_wait_queue_me
+sysTid=16919     futex_wait_queue_me
+sysTid=16920     do_epoll_wait
+sysTid=16929     futex_wait_queue_me
+sysTid=16943     do_epoll_wait
+sysTid=16945     futex_wait_queue_me
+sysTid=16946     futex_wait_queue_me
+sysTid=16953     futex_wait_queue_me
+sysTid=16973     futex_wait_queue_me
+sysTid=16981     futex_wait_queue_me
+sysTid=16982     futex_wait_queue_me
+sysTid=16984     futex_wait_queue_me
+sysTid=16989     futex_wait_queue_me
+sysTid=17005     do_epoll_wait
+sysTid=17037     do_epoll_wait
+sysTid=17038     futex_wait_queue_me
+sysTid=17040     futex_wait_queue_me
+sysTid=17071     futex_wait_queue_me
+sysTid=17073     do_epoll_wait
+sysTid=17084     do_epoll_wait
+sysTid=17089     binder_wait_for_work
+sysTid=17103     do_epoll_wait
+sysTid=17119     do_epoll_wait
+sysTid=17139     futex_wait_queue_me
+sysTid=17253     futex_wait_queue_me
+sysTid=17255     futex_wait_queue_me
+sysTid=17256     futex_wait_queue_me
+sysTid=19728     binder_wait_for_work
+sysTid=19749     futex_wait_queue_me
+sysTid=20330     binder_wait_for_work
+sysTid=20510     futex_wait_queue_me
+sysTid=20516     futex_wait_queue_me
+sysTid=20518     futex_wait_queue_me
+sysTid=20519     futex_wait_queue_me
+sysTid=20521     futex_wait_queue_me
+sysTid=20534     futex_wait_queue_me
+sysTid=20562     futex_wait_queue_me
+sysTid=20653     futex_wait_queue_me
+sysTid=20654     futex_wait_queue_me
+sysTid=20701     futex_wait_queue_me
+sysTid=20705     do_epoll_wait
+sysTid=20706     do_epoll_wait
+sysTid=20707     do_epoll_wait
+sysTid=20708     do_epoll_wait
+sysTid=20709     do_epoll_wait
+sysTid=20710     do_epoll_wait
+sysTid=21001     0
+sysTid=21003     futex_wait_queue_me
+sysTid=21006     futex_wait_queue_me
+sysTid=21012     futex_wait_queue_me
+sysTid=21052     futex_wait_queue_me
+
+----- end 16545 -----
