@@ -1,4 +1,4 @@
-# CVE Report: Instagram Denial-of-Service via Malformed Drawable Resource
+# Instagram Denial-of-Service via Malformed Drawable Resource
 
 ## Summary
 A memory exhaustion vulnerability has been identified in Instagram for Android (versions ≤ 370.1.0.43.96), which leads to application termination due to improper handling of malformed drawable resources in end-to-end encrypted (E2EE) group chats. When a user attempts to 'like' a message referencing a non-existent or corrupted drawable resource, the application enters an infinite retry allocation state, ultimately causing an **OutOfMemoryError (OOM)** and resulting in a forced crash.
