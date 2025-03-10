@@ -27,7 +27,7 @@ Instagram's Android application fails to properly handle corrupted or missing dr
 2. **Exchange Messages**
    - Participants send text and voice messages in the chat.
 3. **Trigger the Exploit**
-   - A participant attempts to 'like' a message containing the malformed drawable resource.
+   - A participant attempts to 'like' a message  or tries to type extensively and or interact with other senders message 
 4. **Observe the Impact**
    - Instagram crashes on all devices that render the affected message.
 
