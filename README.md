@@ -47,6 +47,8 @@ Instagram's Android app fails to handle corrupted drawable resources safely, lea
 
 https://github.com/user-attachments/assets/93002dd6-77dd-4b7f-b2fd-5ba86372f588
 
+![20250310_135134](https://github.com/user-attachments/assets/d81af352-284c-486a-b8d8-47eb7a142f6e)
+
 # Device 2 (User 2 in group in group OK with end to end enc enabled Galaxy S22 Ultra)
 
 https://github.com/user-attachments/assets/8281d960-0493-4849-bcad-3475103719a3
