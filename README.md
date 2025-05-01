@@ -110,4 +110,4 @@ https://github.com/user-attachments/assets/c1d0ee7e-47ef-4481-8052-51674d777c6f
 4. **Heap Protection**: Implement **memory allocation caps** to prevent excessive memory consumption when handling missing resources.
 
 
-## Update: Bug has been reported to meta and it's been fixed, in the latest update of instagram Meta removed E2EE group chats.
+## Update: Bug has been reported to Meta and it's been fixed, in the latest update of instagram Meta removed E2EE group chats.
