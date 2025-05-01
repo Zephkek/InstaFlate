@@ -109,7 +109,3 @@ https://github.com/user-attachments/assets/c1d0ee7e-47ef-4481-8052-51674d777c6f
 3. **Isolated Execution Environment**: Process drawable inflation in sandboxed threads with strict memory limits.
 4. **Heap Protection**: Implement **memory allocation caps** to prevent excessive memory consumption when handling missing resources.
 
-## **Disclosure Timeline**
-- **Initial Report**: 2025-03-08
-- **CNA Notification**: 2025-03-09
-- **Public Disclosure**: TBD (pending responsible disclosure protocols)
