@@ -109,3 +109,5 @@ https://github.com/user-attachments/assets/c1d0ee7e-47ef-4481-8052-51674d777c6f
 3. **Isolated Execution Environment**: Process drawable inflation in sandboxed threads with strict memory limits.
 4. **Heap Protection**: Implement **memory allocation caps** to prevent excessive memory consumption when handling missing resources.
 
+
+## Update: Bug has been reported to meta and it's been fixed, in the latest update of instagram Meta removed E2EE group chats.
